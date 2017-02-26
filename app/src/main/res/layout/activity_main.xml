@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.unscripted.www.fitnessappprototype.MainActivity">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="33dp"
+        android:id="@+id/level"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:text="Beginner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:id="@+id/rdioBeginner"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/level" />
+
+    <RadioButton
+        android:text="Novice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rdioNovice"
+        android:layout_alignBaseline="@+id/rdioBeginner"
+        android:layout_alignBottom="@+id/rdioBeginner"
+        android:layout_toEndOf="@+id/rdioBeginner"
+        android:layout_marginStart="27dp" />
+
+    <RadioButton
+        android:text="Advanced"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rdioAdvanced"
+        android:layout_alignBaseline="@+id/rdioNovice"
+        android:layout_alignBottom="@+id/rdioNovice"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="23dp" />
+</RelativeLayout>
