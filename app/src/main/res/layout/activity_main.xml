@@ -29,22 +29,31 @@
         android:layout_toEndOf="@+id/level" />
 
     <RadioButton
-        android:text="Novice"
+        android:text="Intermediate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rdioNovice"
+        android:id="@+id/rdioIntermediate"
         android:layout_alignBaseline="@+id/rdioBeginner"
         android:layout_alignBottom="@+id/rdioBeginner"
-        android:layout_toEndOf="@+id/rdioBeginner"
-        android:layout_marginStart="27dp" />
+        android:layout_centerHorizontal="true" />
 
     <RadioButton
         android:text="Advanced"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rdioAdvanced"
-        android:layout_alignBaseline="@+id/rdioNovice"
-        android:layout_alignBottom="@+id/rdioNovice"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="23dp" />
+        android:layout_marginEnd="13dp"
+        android:layout_alignBaseline="@+id/rdioIntermediate"
+        android:layout_alignBottom="@+id/rdioIntermediate"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
