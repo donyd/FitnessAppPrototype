@@ -10,50 +10,48 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.unscripted.www.fitnessappprototype.MainActivity">
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="33dp"
-        android:id="@+id/level"
-        android:layout_alignParentStart="true" />
-
-    <RadioButton
-        android:text="Beginner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="13dp"
-        android:id="@+id/rdioBeginner"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/level" />
-
-    <RadioButton
-        android:text="Intermediate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rdioIntermediate"
-        android:layout_alignBaseline="@+id/rdioBeginner"
-        android:layout_alignBottom="@+id/rdioBeginner"
-        android:layout_centerHorizontal="true" />
-
-    <RadioButton
-        android:text="Advanced"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rdioAdvanced"
-        android:layout_marginEnd="13dp"
-        android:layout_alignBaseline="@+id/rdioIntermediate"
-        android:layout_alignBottom="@+id/rdioIntermediate"
-        android:layout_alignParentEnd="true" />
-
     <Button
-        android:text="Start"
+        android:text="@string/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <ToggleButton
+        android:text="@string/togglebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/toggleBeginner"
+        android:textOn="@string/beginner"
+        android:textOff=""
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button"
+        android:layout_marginEnd="17dp" />
+
+    <ToggleButton
+        android:text="@string/togglebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleNovice"
+        android:textOn="@string/novice"
+        android:textOff=""
+        android:layout_alignBaseline="@+id/toggleBeginner"
+        android:layout_alignBottom="@+id/toggleBeginner"
+        android:layout_alignStart="@+id/button" />
+
+    <ToggleButton
+        android:text="@string/togglebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleAdvanced"
+        android:textOn="@string/advanced"
+        android:textOff=""
+        android:layout_marginStart="15dp"
+        android:layout_alignBaseline="@+id/toggleNovice"
+        android:layout_alignBottom="@+id/toggleNovice"
+        android:layout_toEndOf="@+id/toggleNovice" />
 
 </RelativeLayout>

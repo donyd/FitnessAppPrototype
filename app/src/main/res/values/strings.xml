@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Fitness App Prototype</string>
     <string name="title_activity_session">Session</string>
+    <string name="start">Start</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="beginner">Beginner</string>
+    <string name="novice">Novice</string>
+    <string name="advanced">Advanced</string>
 </resources>
