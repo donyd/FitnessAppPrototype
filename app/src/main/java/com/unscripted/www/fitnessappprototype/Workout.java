@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +15,20 @@ public class Workout extends AppCompatActivity {
     //Declare workout button
     Button workoutBtn;
 
+    //This creates a back button to go BACKWARDS
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout2);
+        //this line creates back button to go BACKWARDS
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //Initalize workout
         workoutBtn= (Button) findViewById(R.id.button2);
