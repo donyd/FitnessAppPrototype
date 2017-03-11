@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         novice = (ToggleButton) findViewById(R.id.toggleNovice);
         advanced = (ToggleButton) findViewById(R.id.toggleAdvanced);
 
-        beginner.setChecked(true);
         beginner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -30,10 +29,8 @@ public class MainActivity extends AppCompatActivity {
                     beginner.setTextOn("Beginner");
 
                     novice.setChecked(false);
-                    novice.setTextOff("");
 
                     advanced.setChecked(false);
-                    advanced.setTextOff("");
                 }
             }
         });
@@ -43,12 +40,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     beginner.setChecked(false);
-                    beginner.setTextOff("");
 
                     novice.setTextOn("Novice");
 
                     advanced.setChecked(false);
-                    advanced.setTextOff("");
                 }
             }
         });
@@ -58,10 +53,8 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     beginner.setChecked(false);
-                    beginner.setTextOff("");
 
                     novice.setChecked(false);
-                    novice.setTextOff("");
 
                     advanced.setTextOn("Advanced");
                 }
@@ -83,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                Intent intent = new Intent(MainActivity.this, Session.class);
+                Intent intent = new Intent(MainActivity.this, Workout.class);
 
                 // Launch the Activity using the intent
                 startActivity(intent);

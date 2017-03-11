@@ -23,24 +23,13 @@
         android:text="@string/togglebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:id="@+id/toggleBeginner"
         android:textOn="@string/beginner"
-        android:textOff=""
+        android:textOff="Beginner"
+        android:background="@drawable/my_btn_toggle"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/button"
-        android:layout_marginEnd="17dp" />
-
-    <ToggleButton
-        android:text="@string/togglebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleNovice"
-        android:textOn="@string/novice"
-        android:textOff=""
-        android:layout_alignBaseline="@+id/toggleBeginner"
-        android:layout_alignBottom="@+id/toggleBeginner"
-        android:layout_alignStart="@+id/button" />
+        android:layout_alignParentStart="true" />
 
     <ToggleButton
         android:text="@string/togglebutton"
@@ -48,10 +37,39 @@
         android:layout_height="wrap_content"
         android:id="@+id/toggleAdvanced"
         android:textOn="@string/advanced"
-        android:textOff=""
-        android:layout_marginStart="15dp"
+        android:textOff="Advanced"
+        android:background="@drawable/my_btn_toggle"
         android:layout_alignBaseline="@+id/toggleNovice"
         android:layout_alignBottom="@+id/toggleNovice"
-        android:layout_toEndOf="@+id/toggleNovice" />
+        android:layout_alignParentEnd="true" />
+
+    <ToggleButton
+        android:text="@string/togglebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleNovice"
+        android:textOn="@string/novice"
+        android:textOff="Novice"
+        android:background="@drawable/my_btn_toggle"
+        android:layout_above="@+id/textView4"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/myAwesomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="CHOOSE LEVEL"
+        android:textSize="20sp" />
+
+    <TextView
+        android:text="CHOOSE BODY PART"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/toggleBeginner"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
