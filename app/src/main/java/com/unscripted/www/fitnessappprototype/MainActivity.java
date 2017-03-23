@@ -144,10 +144,10 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                Intent intent = new Intent(MainActivity.this, Profile.class);
+                //Intent intent = new Intent(MainActivity.this, Profile.class);
 
                 // Launch the Activity using the intent
-                startActivity(intent);
+                //startActivity(intent);
 
             }
         });
