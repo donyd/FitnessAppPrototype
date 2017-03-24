@@ -36,15 +36,12 @@
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         app:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="92dp"
-        android:layout_above="@id/button1"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="93dp"
-        android:layout_marginBottom="230dp" />
+        android:layout_marginBottom="76dp"
+        android:layout_above="@+id/workout_container"
+        android:layout_alignStart="@+id/workout_container"
+        android:layout_alignEnd="@+id/workout_container"
+        android:layout_alignParentTop="true" />
 
 
     <ListView
