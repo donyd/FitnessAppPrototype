@@ -36,16 +36,16 @@
         android:background="@drawable/my_btn_toggle"
         android:layout_alignBaseline="@+id/toggleNovice"
         android:layout_alignBottom="@+id/toggleNovice"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp" />
+        android:layout_toStartOf="@+id/myAwesomeTextView" />
 
     <ImageButton
         android:layout_width="120dp"
         android:layout_height="120dp"
         app:srcCompat="@android:drawable/btn_star_big_on"
         android:id="@+id/imageButton4"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/toggleNovice" />
+        android:layout_below="@+id/toggleBeginner"
+        android:layout_toStartOf="@+id/toggleNovice"
+        android:layout_marginTop="80dp" />
 
     <ImageButton
         android:layout_width="120dp"
@@ -53,8 +53,7 @@
         app:srcCompat="@android:drawable/btn_star_big_on"
         android:id="@+id/imageButton"
         android:layout_alignTop="@+id/imageButton4"
-        android:layout_alignEnd="@+id/toggleAdvanced"
-        android:layout_marginEnd="10dp" />
+        android:layout_toEndOf="@+id/toggleNovice" />
 
     <ImageButton
         android:layout_width="120dp"
@@ -70,9 +69,9 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:id="@+id/textView4"
-        android:layout_above="@+id/imageButton"
+        android:layout_below="@+id/toggleBeginner"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginTop="26dp" />
 
     <ToggleButton
         android:text="@string/togglebutton"
@@ -96,8 +95,7 @@
         android:background="@drawable/my_btn_toggle"
         android:layout_alignBaseline="@+id/toggleNovice"
         android:layout_alignBottom="@+id/toggleNovice"
-        android:layout_toEndOf="@+id/myAwesomeTextView"
-        android:layout_marginStart="12dp" />
+        android:layout_toEndOf="@+id/myAwesomeTextView" />
 
     <Button
         android:text="@string/home"

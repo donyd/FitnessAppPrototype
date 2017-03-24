@@ -46,21 +46,22 @@
         android:layout_marginEnd="93dp"
         android:layout_marginBottom="230dp" />
 
-    <LinearLayout
+
+    <ListView
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginBottom="17dp"
         android:layout_above="@+id/button1"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/border">
+        android:background="@drawable/border"
+        android:weightSum="1"
+        android:id="@+id/workout_container"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="100dp"
-            android:layout_height="30dp">
 
-        </TextView>
+    </ListView>
 
-    </LinearLayout>
+
+
 
 </RelativeLayout>

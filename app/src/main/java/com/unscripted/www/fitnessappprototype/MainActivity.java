@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     // Declare ToggleButtons instances
     ToggleButton beginner, novice, advanced;
 
-    //Declare Home, Workout and Profile Buttons
+    //Declare Home, workout and Profile Buttons
     Button homeBtn;
     Button workoutBtn;
     Button profileBtn;
@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mainactivity);
 
         // Initialize ToggleButtons
         beginner = (ToggleButton) findViewById(R.id.toggleBeginner);
         novice = (ToggleButton) findViewById(R.id.toggleNovice);
         advanced = (ToggleButton) findViewById(R.id.toggleAdvanced);
 
-        //Initialize Home, Workout and Profile Buttons
+        //Initialize Home, workout and Profile Buttons
         homeBtn= (Button) findViewById(R.id.button1);
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Open Workout Activity when Body part Selected
+        //Open workout Activity when Body part Selected
         ImageButton launchActivityButton = (ImageButton) findViewById(R.id.imageButton);
         launchActivityButton.setOnClickListener(new View.OnClickListener() {
 
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                //Intent intent = new Intent(MainActivity.this, Profile.class);
+                //Intent intent = new Intent(mainactivity.this, Profile.class);
 
                 // Launch the Activity using the intent
                 //startActivity(intent);
