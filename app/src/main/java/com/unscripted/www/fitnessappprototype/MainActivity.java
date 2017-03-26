@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                Intent intent = new Intent(MainActivity.this, Workout.class);
+                Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
 
                 // Launch the Activity using the intent
                 startActivity(intent);
@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //WHen clicked links to WORKOUT page
-        Button launchActivityTwoButton = (Button) findViewById(R.id.button2);
-        launchActivityTwoButton.setOnClickListener(new View.OnClickListener() {
+        Button btnWorkout = (Button) findViewById(R.id.button2);
+        btnWorkout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -122,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                Intent intent = new Intent(MainActivity.this, Workout.class);
+               Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+
 
                 // Launch the Activity using the intent
                 startActivity(intent);
@@ -131,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //WHen clicked links to PROFILE page
-        Button launchActivityThreeButton = (Button) findViewById(R.id.button3);
-        launchActivityThreeButton.setOnClickListener(new View.OnClickListener() {
+        Button btnProfile = (Button) findViewById(R.id.button3);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -142,12 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create an intent stating which Activity you would like to
                 // start
-                // Intent intent = new Intent(this, ActivityTwo.class);
-                //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                //Intent intent = new Intent(mainactivity.this, Profile.class);
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+
 
                 // Launch the Activity using the intent
-                //startActivity(intent);
+                startActivity(intent);
 
             }
         });

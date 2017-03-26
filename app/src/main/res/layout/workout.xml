@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.unscripted.www.fitnessappprototype.Workout">
+    tools:context="com.unscripted.www.fitnessappprototype.WorkoutActivity">
 
     <Button
         android:text="@string/home"
@@ -46,7 +46,7 @@
 
     <ListView
         android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
         android:layout_above="@+id/button1"
         android:layout_centerHorizontal="true"
@@ -57,8 +57,5 @@
 
 
     </ListView>
-
-
-
 
 </RelativeLayout>

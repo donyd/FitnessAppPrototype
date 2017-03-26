@@ -1,16 +1,21 @@
 package com.unscripted.www.fitnessappprototype;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class Workout extends AppCompatActivity {
+import static android.app.PendingIntent.getActivity;
+
+public class WorkoutActivity extends AppCompatActivity {
+
+
 
     private String[] arrWorkout = {"Bicep Curl", "Lunges", "Crunches", "Chest Press"};
     ListView mListView;
@@ -18,7 +23,7 @@ public class Workout extends AppCompatActivity {
     //Declare workout button
     Button workoutBtn;
 
-    //This creates a back button to go BACKWARDS
+    // Creates a back button to go BACKWARDS
     @Override
     public boolean onSupportNavigateUp(){
         finish();
@@ -34,26 +39,40 @@ public class Workout extends AppCompatActivity {
 
 
         /** START OF ListView setup and details
-         * Recycler list view to present a receptacle for exercises
+         * List view to present a receptacle for exercises
          * which will be displayed based on yet to be finalised logic
          * and also on the basis of whether user has selected a bias i.e
          * Arms, Legs, etcetera
+         *
+         *  @ reference https://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews         *
          */
 
         mListView = (ListView) findViewById(R.id.workout_container);
-
-
 
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, arrWorkout);
 
         mListView.setAdapter(mAdapter);
 
-        /**
-         * END OF ListView setup and details
-         */
+        // END OF ListView setup and details
 
-        //Initalize workout
+        // Get references to ListView items
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
+
+                String listName = mListView.getItemAtPosition(i).toString();
+
+                builder.setMessage(listName).setTitle("Exercise one");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return true;
+            }
+        });
+
+        // Initialize workout
         workoutBtn = (Button) findViewById(R.id.button2);
 
         //workout button is selected and cannot be pressed
@@ -61,13 +80,14 @@ public class Workout extends AppCompatActivity {
         workoutBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 workoutBtn.setPressed(true);
+
                 return true;
             }
         });
 
-        //When clicked links to HOME page
-        Button launchActivityOneButton = (Button) findViewById(R.id.button1);
-        launchActivityOneButton.setOnClickListener(new View.OnClickListener() {
+        // Links to HOME page
+        Button btnHome = (Button) findViewById(R.id.button1);
+        btnHome.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -79,7 +99,7 @@ public class Workout extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                Intent intent = new Intent(Workout.this, MainActivity.class);
+                Intent intent = new Intent(WorkoutActivity.this, MainActivity.class);
 
                 // Launch the Activity using the intent
                 startActivity(intent);
@@ -87,9 +107,9 @@ public class Workout extends AppCompatActivity {
             }
         });
 
-        //WHen clicked links to PROFILE page
-        Button launchActivityThreeButton = (Button) findViewById(R.id.button3);
-        launchActivityThreeButton.setOnClickListener(new View.OnClickListener() {
+        // Links to PROFILE page
+        Button btnProfile = (Button) findViewById(R.id.button3);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -99,17 +119,16 @@ public class Workout extends AppCompatActivity {
 
                 // Create an intent stating which Activity you would like to
                 // start
-                // Intent intent = new Intent(this, ActivityTwo.class);
-                //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                //Intent intent = new Intent(workout.this, Profile.class);
+                Intent intent = new Intent(WorkoutActivity.this, ProfileActivity.class);
 
                 // Launch the Activity using the intent
-                //startActivity(intent);
+                startActivity(intent);
 
             }
         });
 
     }
+
 
 
 }
