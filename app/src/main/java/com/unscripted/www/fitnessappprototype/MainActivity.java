@@ -1,11 +1,14 @@
 package com.unscripted.www.fitnessappprototype;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +19,47 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //********
+        Button ok = (Button) findViewById(R.id.btnAlert);
+        ok.setOnClickListener(new View.OnClickListener(){
+            @Override
+                public void onClick(View v){
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("Warning");
+                alert
+                        .setIcon(R.mipmap.ic_launcher)//check
+                        .setMessage("Message of Dialog")
+                        .setCancelable(false)
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+
+
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Cancel option", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+
+
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+
+
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(),"Ok option", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+
+
+            }
+
+
+        });
+        //********
+
+
 
         // Initialize ToggleButtons
         beginner = (ToggleButton) findViewById(R.id.toggleBeginner);
