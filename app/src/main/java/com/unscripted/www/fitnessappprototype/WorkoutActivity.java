@@ -60,14 +60,15 @@ public class WorkoutActivity extends AppCompatActivity {
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
-
+               /* AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutActivity.this);
                 String listName = mListView.getItemAtPosition(i).toString();
-
                 builder.setMessage(listName).setTitle("Exercise one");
-
                 AlertDialog dialog = builder.create();
-                dialog.show();
+                dialog.show(); */ // Dialog created to test out ListView item click event.
+
+                Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
+                startActivity(intent);
+
                 return true;
             }
         });
