@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         //WHen clicked links to WORKOUT page
         Button btnWorkout = (Button) findViewById(R.id.button2);
         btnWorkout.setOnClickListener(new View.OnClickListener() {
