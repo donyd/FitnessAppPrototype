@@ -1,6 +1,7 @@
 package com.unscripted.www.fitnessappprototype;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -33,18 +34,46 @@ public class ProfileActivity extends AppCompatActivity {
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);
 
+        ViewPager viewPager;
+        CustomSwipeAdapter adapter;
+
+        viewPager = (ViewPager)findViewById(R.id.view_pager);
+        adapter = new CustomSwipeAdapter(this);
+        viewPager.setAdapter(adapter);
+
         //MENU BUTTONS
-        //Home button is selected and cannot be pressed
-        homeBtn.setPressed(true);
-        homeBtn.setOnTouchListener(new View.OnTouchListener() {
+        //Home Profile is selected and cannot be pressed
+        profileBtn.setPressed(true);
+        profileBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
-                homeBtn.setPressed(true);
+                profileBtn.setPressed(true);
                 workoutBtn.setPressed(false);
-                profileBtn.setPressed(false);
+                homeBtn.setPressed(false);
                 return true;
             }
         });
 
+        // Links to HOME page
+        Button btnHome = (Button) findViewById(R.id.button1);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO:
+                // Launch Activity Two
+                // Hint: use Context's startActivity() method
+
+                // Create an intent stating which Activity you would like to
+                // start
+                // Intent intent = new Intent(this, ActivityTwo.class);
+                //Intent intent = new Intent(android.content.Intent, ActivityTwo);
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+
+                // Launch the Activity using the intent
+                startActivity(intent);
+
+            }
+        });
 
         //WHen clicked links to WORKOUT page
         Button btnWorkout = (Button) findViewById(R.id.button2);
