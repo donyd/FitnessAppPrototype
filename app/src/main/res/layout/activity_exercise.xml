@@ -8,12 +8,14 @@
     tools:context="com.unscripted.www.fitnessappprototype.ExerciseActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/exerciseImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="15dp"
-        android:visibility="visible"
-        app:srcCompat="@mipmap/lungestart"
+        android:scaleType="centerInside"
+        android:src="@drawable/lungestart"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
+
+
 </RelativeLayout>
