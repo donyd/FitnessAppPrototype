@@ -13,7 +13,7 @@ import android.widget.ImageView;
 public class ExerciseActivity extends AppCompatActivity {
     // Reference to views
     ImageView exerciseImageHolder;
-    Button exerciseButton;
+    //Button exerciseButton;
 
    /* static int mImages[] = new int[]{
             R.drawable.lungestart,
@@ -26,14 +26,14 @@ public class ExerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exercise);
 
         exerciseImageHolder = (ImageView) findViewById(R.id.exerciseImage);
-        exerciseButton = (Button) findViewById(R.id.btnExercise);
+        //exerciseButton = (Button) findViewById(R.id.btnExercise);
 
-        exerciseButton.setOnClickListener(new View.OnClickListener(){
+       /* exerciseButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 ((TransitionDrawable) exerciseImageHolder.getDrawable()).startTransition(1000);
             }
-        });
+        });*/
 
 
         /**
