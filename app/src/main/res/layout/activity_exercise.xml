@@ -11,7 +11,9 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/lunge_start"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:visibility="visible"
+        app:srcCompat="@mipmap/lungestart"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
