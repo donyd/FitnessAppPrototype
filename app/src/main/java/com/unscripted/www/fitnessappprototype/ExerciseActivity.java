@@ -33,12 +33,11 @@ public class ExerciseActivity extends AppCompatActivity {// Declare buttons
         profileBtn= (Button) findViewById(R.id.button3);
 
         //MENU BUTTONS
-        //Home button is selected and cannot be pressed
-        homeBtn.setPressed(true);
+        workoutBtn.setPressed(true);
         homeBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
-                homeBtn.setPressed(true);
-                workoutBtn.setPressed(false);
+                homeBtn.setPressed(false);
+                workoutBtn.setPressed(true);
                 profileBtn.setPressed(false);
                 return true;
             }
