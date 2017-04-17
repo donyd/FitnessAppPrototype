@@ -28,8 +28,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_LEVEL_CREATE =
             "CREATE TABLE " + LevelEntry.TABLE_NAME + " (" +
                     LevelEntry._ID + " INTEGER PRIMARY KEY, " +
-                    LevelEntry.COLUMN_LEVEL + " TEXT, " + ")" +
-                    LevelEntry.COLUMN_REPS + " INTEGER" + ")";
+                    LevelEntry.COLUMN_LEVEL + " TEXT, " +
+                    LevelEntry.COLUMN_REPS + " INTEGER " + ")";
 
 
     private static final String TABLE_WORKOUT_CREATE =
@@ -42,11 +42,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     WorkoutEntry.COLUMN_URL + " TEXT " + ")";
 
     private static final String TABLE_EXERCISETRACKER_CREATE =
-            "CREATE TABLE " + ExerciseTrackerEntry.TABLE_NAME + " (" +
+            // Previous Table create query which caused app to crash
+          /*  "CREATE TABLE " + ExerciseTrackerEntry.TABLE_NAME + " (" +
                     ExerciseTrackerEntry._ID + " INTEGER PRIMARY KEY, " +
                     " FOREIGN KEY (" + ExerciseTrackerEntry._ID + ") REFERENCES " +
-                    ExerciseEntry.TABLE_NAME + "(" + ExerciseEntry._ID + ") " +
-                    ExerciseTrackerEntry.COLUMN_TOTALREPS + " INTEGER, " + ")";
+                    ExerciseEntry.TABLE_NAME + "(" + ExerciseEntry._ID + "), " +
+                    ExerciseTrackerEntry.COLUMN_TOTALREPS + " INTEGER " + ")";*/
+
+          "CREATE TABLE " + ExerciseTrackerEntry.TABLE_NAME +  " (" +
+                  ExerciseTrackerEntry._ID + " INTEGER PRIMARY KEY, " +
+                  ExerciseTrackerEntry.COLUMN_TOTALREPS + " INTEGER, " +
+                  " FOREIGN KEY(" + ExerciseTrackerEntry._ID + ") REFERENCES " +
+                  ExerciseEntry.TABLE_NAME + "(" + ExerciseEntry._ID + ") " + ")";
 
 
 
