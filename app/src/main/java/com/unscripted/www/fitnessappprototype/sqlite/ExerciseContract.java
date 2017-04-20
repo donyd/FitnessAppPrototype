@@ -44,7 +44,7 @@ public final class ExerciseContract {
 
     public static final class WorkoutEntry implements BaseColumns {
         // Table name
-        public static final String TABLE_NAME = "workout";
+        public static final String TABLE_NAME = "activity_workout";
 
         // Column names
         public static final String _ID = BaseColumns._ID;

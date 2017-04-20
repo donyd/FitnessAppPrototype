@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         //this line creates back button to go BACKWARDS
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Initialize Home, workout and Profile Buttons
+        //Initialize Home, activity_workout and Profile Buttons
         homeBtn= (Button) findViewById(R.id.button1);
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);

@@ -1,10 +1,11 @@
 package com.unscripted.www.fitnessappprototype;
 
-import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +13,6 @@ import android.widget.ImageButton;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
-import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseTrackerEntry;
-import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
-import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.WorkoutEntry;
 
 import com.unscripted.www.fitnessappprototype.sqlite.DatabaseHelper;
 
@@ -22,31 +20,37 @@ public class MainActivity extends AppCompatActivity {
     // Declare ToggleButtons instances
     ToggleButton beginner, novice, advanced;
 
-    //Declare Home, workout and Profile Buttons
+    //Declare Home, activity_workout and Profile Buttons
     Button homeBtn;
     Button workoutBtn;
     Button profileBtn;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mainactivity);
+        setContentView(R.layout.activity_main);
 
         /* Initialize database
         @ reference https://app.pluralsight.com/library/courses/android-database-application-sqlite-building-your-first/
         */
-      /*  DatabaseHelper helper = new DatabaseHelper(this);
+        /*DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();*/
 
       // Only to be called when intially populating exercises table
-      // CreateExercises();
+        //CreateExercises();
+
+
+
+
 
         // Initialize ToggleButtons
         beginner = (ToggleButton) findViewById(R.id.toggleBeginner);
         novice = (ToggleButton) findViewById(R.id.toggleNovice);
         advanced = (ToggleButton) findViewById(R.id.toggleAdvanced);
 
-        //Initialize Home, workout and Profile Buttons
+        //Initialize Home, activity_workout and Profile Buttons
         homeBtn= (Button) findViewById(R.id.button1);
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Open workout Activity when Body part Selected
+        //Open activity_workout Activity when Body part Selected
         ImageButton launchActivityButton = (ImageButton) findViewById(R.id.imageButton);
         launchActivityButton.setOnClickListener(new View.OnClickListener() {
 

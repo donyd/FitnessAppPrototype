@@ -1,15 +1,21 @@
 package com.unscripted.www.fitnessappprototype;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.unscripted.www.fitnessappprototype.sqlite.DatabaseHelper;
+import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract;
+import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -20,7 +26,39 @@ public class WorkoutActivity extends AppCompatActivity {
     private String[] arrWorkout = {"Bicep Curl", "Lunges", "Crunches", "Chest Press"};
     ListView mListView;
 
-    //Declare workout button
+    /*
+  @ reference https://app.pluralsight.com/player?course=android-database-application-sqlite-building-your-first&author=simone-alessandria&name=android-database-application-sqlite-building-your-first-m3&clip=6&mode=live
+   */
+    private void readData(){
+        DatabaseHelper helper = new DatabaseHelper(this);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String[] projection = {ExerciseEntry.COLUMN_TYPE,
+                ExerciseEntry.COLUMN_NAME,
+                ExerciseEntry.COLUMN_URL};
+
+        String selection = ExerciseEntry.COLUMN_TYPE + " = ? ";
+        String[] selectionArgs = {"Abs"};
+
+        Cursor c = db.query(ExerciseEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+
+        // verifying query return
+        int i = c.getCount();
+        Log.d("Record Count", String.valueOf(i));
+
+        String rowContent = "";
+        while(c.moveToNext()){
+            for(i = 0; i<=2; i++){
+                rowContent += c.getString(i) + " - ";
+            }
+            Log.i("Row " + String.valueOf(c.getPosition()), rowContent);
+            rowContent = "";
+        }
+        c.close();
+    }
+
+
+
+    //Declare activity_workout button
     Button workoutBtn;
 
     // Creates a back button to go BACKWARDS
@@ -33,7 +71,7 @@ public class WorkoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.workout);
+        setContentView(R.layout.activity_workout);
         //this line creates back button to go BACKWARDS
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -46,6 +84,11 @@ public class WorkoutActivity extends AppCompatActivity {
          *
          *  @ reference https://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews         *
          */
+
+
+        readData();
+
+
 
         mListView = (ListView) findViewById(R.id.workout_container);
 
@@ -85,10 +128,10 @@ public class WorkoutActivity extends AppCompatActivity {
             }
         });*/
 
-        // Initialize workout
+        // Initialize activity_workout
         workoutBtn = (Button) findViewById(R.id.button2);
 
-        //workout button is selected and cannot be pressed
+        //activity_workout button is selected and cannot be pressed
         workoutBtn.setPressed(true);
         workoutBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
