@@ -22,11 +22,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ExerciseActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity
-            android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".profileTest"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
