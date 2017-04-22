@@ -8,15 +8,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.unscripted.www.fitnessappprototype.WorkoutActivity">
 
+
     <ListView
         android:layout_width="160dp"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:background="@drawable/border"
         android:weightSum="1"
         android:id="@+id/workout_container"
         android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp">
 
     </ListView>
 
@@ -50,12 +52,20 @@
         android:layout_height="60sp"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
-        android:layout_marginBottom="22dp"
         android:text="START"
         android:id="@+id/button4"
+        android:layout_marginBottom="14dp"
         android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/btnLightYellow"/>
 
-
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fitn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
 
 </RelativeLayout>
