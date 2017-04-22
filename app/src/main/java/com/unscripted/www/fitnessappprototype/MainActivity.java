@@ -166,11 +166,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create an intent stating which Activity you would like to
                 // start
-                Intent intent = new Intent(MainActivity.this, profileTest.class);
+             /*   Intent intent = new Intent(MainActivity.this, profileTest.class);
 
 
                 // Launch the Activity using the intent
-                startActivity(intent);
+                startActivity(intent);*/
 
             }
         });
