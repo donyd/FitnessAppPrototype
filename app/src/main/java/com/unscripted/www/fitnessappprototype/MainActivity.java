@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     // Declare ToggleButtons instances
     ToggleButton beginner, novice, advanced;
 
-    //Declare Home, workout and Profile Buttons
+    //Declare Home, Workout and Profile Buttons
     Button homeBtn;
     Button workoutBtn;
     Button profileBtn;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         /* Initialize database
         @ reference https://app.pluralsight.com/library/courses/android-database-application-sqlite-building-your-first/
         */
-      /*  DatabaseHelper helper = new DatabaseHelper(this);
+        /*  DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();*/
 
       // Only to be called when intially populating exercises table
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // MENU BUTTONS
-        // Home button is selected and cannot be pressed
+        // Home button is selected when entering page
         homeBtn.setPressed(true);
         homeBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
@@ -124,10 +124,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-        // links to WORKOUT page
+        //Pressing this button links to WORKOUT page
         Button btnWorkout = (Button) findViewById(R.id.button2);
         btnWorkout.setOnClickListener(new View.OnClickListener() {
 
@@ -143,14 +140,13 @@ public class MainActivity extends AppCompatActivity {
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
                Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
 
-
                 // Launch the Activity using the intent
                 startActivity(intent);
 
             }
         });
 
-        // links to PROFILE page
+        //Pressing this button links to PROFILE page
         Button btnProfile = (Button) findViewById(R.id.button3);
         btnProfile.setOnClickListener(new View.OnClickListener() {
 
@@ -170,9 +166,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
     }
