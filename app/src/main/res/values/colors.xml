@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="btnLightgreen">#90EE90</color>
-    <color name="btnGreen">#3CB371</color>
+    <color name="colorPrimary">#34993c</color>
+    <color name="colorPrimaryDark">#2e8435</color>
+    <color name="colorAccent">#f2ee1a</color>
+    <color name="btnLightYellow">#f2ee1a</color>
+    <color name="btnDarkYellow">#d8ce08</color>
 </resources>
