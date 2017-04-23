@@ -15,10 +15,20 @@ public class profileTest extends AppCompatActivity {
     Button workoutBtn;
     Button profileBtn;
 
+    // Creates a back button to go BACKWARDS
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_test);
+
+        //this line creates back button to go BACKWARDS
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Initialize Home, workout and Profile Buttons
         homeBtn= (Button) findViewById(R.id.button1);
@@ -80,6 +90,8 @@ public class profileTest extends AppCompatActivity {
 
                 }
             });
+
+
     }
 
 

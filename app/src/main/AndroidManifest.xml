@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:label="U-FIT"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +22,14 @@
         </activity>
         <activity
             android:name=".WorkoutActivity"
-            android:screenOrientation="portrait" />
+            android:label="WORKOUT"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ExerciseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".profileTest"
+            android:label="PROFILE"
             android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
