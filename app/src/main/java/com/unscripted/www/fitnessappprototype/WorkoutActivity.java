@@ -88,6 +88,15 @@ public class WorkoutActivity extends AppCompatActivity {
 
         readData();
 
+        /*
+         @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 getExtra
+         */
+
+
+        String passedInfo = getIntent().getStringExtra("Type");
+
+        Log.d("Intent Extra", passedInfo);
+
 
 
         mListView = (ListView) findViewById(R.id.workout_container);
