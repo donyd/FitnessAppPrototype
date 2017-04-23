@@ -7,15 +7,10 @@
     android:visibility="visible"
     tools:context="com.unscripted.www.fitnessappprototype.ExerciseActivity">
 
-    <ImageView
-        android:id="@+id/exerciseImage"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="15dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/lungestart"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtube_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>
