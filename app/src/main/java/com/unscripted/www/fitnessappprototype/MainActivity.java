@@ -182,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
                levelTypeIntent.putExtra("Type", "null");
                 startActivity(levelTypeIntent);
 
+                // Test comment to check git branch issue
+
             }
         });
 

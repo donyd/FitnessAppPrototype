@@ -11,7 +11,7 @@
 
     <ListView
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:background="@drawable/border"
         android:weightSum="1"
         android:id="@+id/workout_container"
@@ -63,7 +63,7 @@
         android:id="@+id/imageButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        app:srcCompat="@drawable/fitn"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         />
