@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Open activity_workout Activity when Body part Selected
-        ImageButton launchActivityButton = (ImageButton) findViewById(R.id.imgBtnLegs);
-        launchActivityButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton imgBtnAbs = (ImageButton) findViewById(R.id.imgBtnAbs);
+        imgBtnAbs.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -118,15 +118,46 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                levelTypeIntent.putExtra("Type", "Legs");
-
-
+                levelTypeIntent.putExtra("Type", "Abs");
 
                 // Launch the Activity using the intent
                 startActivity(levelTypeIntent);
 
             }
         });
+
+
+        ImageButton imgBtnLegs = (ImageButton) findViewById(R.id.imgBtnLegs);
+        imgBtnLegs.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                levelTypeIntent.putExtra("Type", "Legs");
+                startActivity(levelTypeIntent);
+            }
+        });
+
+        ImageButton imgBtnArms = (ImageButton) findViewById(R.id.imgBtnArms);
+        imgBtnArms.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                levelTypeIntent.putExtra("Type", "Arms");
+                startActivity(levelTypeIntent);
+            }
+        });
+
+        ImageButton imgBtnBack = (ImageButton) findViewById(R.id.imgBtnBack);
+        imgBtnBack.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                levelTypeIntent.putExtra("Type", "Back");
+                startActivity(levelTypeIntent);
+            }
+        });
+
+
         // MENU BUTTONS
         // Home button is selected when entering page
         homeBtn.setPressed(true);
@@ -145,21 +176,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO:
-                // Launch Activity Two
-                // Hint: use Context's startActivity() method
+                // Default workout configuration with just level extra information
+               /* levelTypeIntent.putExtra("Level", "beginner");
+                startActivity(levelTypeIntent);*/
+               levelTypeIntent.putExtra("Type", "null");
+                startActivity(levelTypeIntent);
 
-                // Create an intent stating which Activity you would like to
-                // start
-                // Intent intent = new Intent(this, ActivityTwo.class);
-                //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                 Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
-
-
-
-
-                // Launch the Activity using the intent
-                startActivity(intent);
+                // Test comment to check git branch issue
 
             }
         });

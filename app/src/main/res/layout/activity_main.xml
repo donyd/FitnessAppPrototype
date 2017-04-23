@@ -53,7 +53,7 @@
         android:layout_height="150dp"
         app:srcCompat="@drawable/back_kari"
         android:background="@drawable/border"
-        android:layout_below="@+id/imgBtnLegs"
+        android:layout_below="@+id/txtVwBodyPart"
         android:layout_toEndOf="@+id/imgBtnArms" />
 
     <ImageButton
@@ -62,8 +62,8 @@
         android:layout_height="150dp"
         app:srcCompat="@drawable/legs_kari"
         android:background="@drawable/border"
-        android:layout_below="@+id/txtVwBodyPart"
-        android:layout_toEndOf="@+id/imgBtnAbs" />
+        android:layout_below="@+id/imgBtnAbs"
+        android:layout_toEndOf="@+id/imgBtnArms" />
 
     <ToggleButton
         android:id="@+id/toggleBeginner"
