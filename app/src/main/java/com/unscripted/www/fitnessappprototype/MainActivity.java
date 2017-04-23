@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     Button workoutBtn;
     Button profileBtn;
 
+    // Intent for conveying exercise level and body part information to workout activity
+    Intent levelTypeIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
       // Only to be called when intially populating exercises table
       // CreateExercises();
+
+        // Initialize intent
+        levelTypeIntent = new Intent(MainActivity.this, WorkoutActivity.class);
+
 
         // Initialize ToggleButtons
         beginner = (ToggleButton) findViewById(R.id.toggleBeginner);
@@ -58,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     novice.setChecked(false);
 
                     advanced.setChecked(false);
+                    levelTypeIntent.putExtra("Level", beginner.isChecked());
+
                 }
             }
         });
@@ -71,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     novice.setTextOn("Novice");
 
                     advanced.setChecked(false);
+                    levelTypeIntent.putExtra("Level", beginner.isChecked());
                 }
             }
         });
@@ -84,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     novice.setChecked(false);
 
                     advanced.setTextOn("Advanced");
+                    levelTypeIntent.putExtra("Level", beginner.isChecked());
                 }
             }
         });
@@ -104,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
                 Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+
 
                 // Launch the Activity using the intent
                 startActivity(intent);
@@ -136,7 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-               Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+                 Intent intent = new Intent();
+
 
                 // Launch the Activity using the intent
                 startActivity(intent);
