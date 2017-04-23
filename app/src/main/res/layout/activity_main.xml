@@ -31,7 +31,7 @@
         android:id="@+id/imgBtnArms"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/arms"
+        app:srcCompat="@drawable/arms_kari"
         android:background="@drawable/border"
         android:layout_below="@+id/imgBtnAbs"
         android:layout_alignStart="@+id/imgBtnAbs" />
@@ -40,7 +40,7 @@
         android:id="@+id/imgBtnAbs"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/abs"
+        app:srcCompat="@drawable/abs_kari"
         android:background="@drawable/border"
         android:layout_marginLeft="11dp"
         android:layout_marginStart="17dp"
@@ -51,7 +51,7 @@
         android:id="@+id/imgBtnBack"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/back"
+        app:srcCompat="@drawable/back_kari"
         android:background="@drawable/border"
         android:layout_below="@+id/imgBtnLegs"
         android:layout_toEndOf="@+id/imgBtnArms" />
@@ -60,7 +60,7 @@
         android:id="@+id/imgBtnLegs"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/legs"
+        app:srcCompat="@drawable/legs_kari"
         android:background="@drawable/border"
         android:layout_below="@+id/txtVwBodyPart"
         android:layout_toEndOf="@+id/imgBtnAbs" />
