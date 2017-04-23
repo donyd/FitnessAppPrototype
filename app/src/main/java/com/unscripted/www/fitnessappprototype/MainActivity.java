@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     Button workoutBtn;
     Button profileBtn;
 
+    // Intent for conveying exercise level and body part information to workout activity
+    Intent levelTypeIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
       // Only to be called when intially populating exercises table
       // CreateExercises();
 
+        // Initialize intent
+        levelTypeIntent = new Intent(MainActivity.this, WorkoutActivity.class);
+
+
         // Initialize ToggleButtons
         beginner = (ToggleButton) findViewById(R.id.toggleBeginner);
         novice = (ToggleButton) findViewById(R.id.toggleNovice);
@@ -49,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);
 
+        /*
+         @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 putExtra
+         */
+
         beginner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -58,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                     novice.setChecked(false);
 
                     advanced.setChecked(false);
+                    levelTypeIntent.putExtra("Level", "beginner");
+
                 }
             }
         });
@@ -71,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     novice.setTextOn("Novice");
 
                     advanced.setChecked(false);
+                    levelTypeIntent.putExtra("Level", "novice");
                 }
             }
         });
@@ -84,13 +98,14 @@ public class MainActivity extends AppCompatActivity {
                     novice.setChecked(false);
 
                     advanced.setTextOn("Advanced");
+                    levelTypeIntent.putExtra("Level", "advanced");
                 }
             }
         });
 
 
         //Open activity_workout Activity when Body part Selected
-        ImageButton launchActivityButton = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton launchActivityButton = (ImageButton) findViewById(R.id.imgBtnLegs);
         launchActivityButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -103,10 +118,12 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+                levelTypeIntent.putExtra("Type", "Legs");
+
+
 
                 // Launch the Activity using the intent
-                startActivity(intent);
+                startActivity(levelTypeIntent);
 
             }
         });
@@ -136,7 +153,10 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-               Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+                 Intent intent = new Intent(MainActivity.this, WorkoutActivity.class);
+
+
+
 
                 // Launch the Activity using the intent
                 startActivity(intent);
