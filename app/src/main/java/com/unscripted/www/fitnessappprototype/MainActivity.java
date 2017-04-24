@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
          */
 
         //This tells Toggle buttons how to behave when user clicks on each of them
+        beginner.setChecked(true);
         beginner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -123,7 +124,13 @@ public class MainActivity extends AppCompatActivity {
                 // start
                 // Intent intent = new Intent(this, ActivityTwo.class);
                 //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                levelTypeIntent.putExtra("Type", "Abs");
+
+                if (beginner.isChecked()) {
+                    levelTypeIntent.putExtra("Type", "Abs");
+                    levelTypeIntent.putExtra("Level", "beginner");
+                } else {
+                    levelTypeIntent.putExtra("Type", "Abs");
+                }
 
                 // Launch the Activity using the intent
                 startActivity(levelTypeIntent);
@@ -137,7 +144,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                levelTypeIntent.putExtra("Type", "Legs");
+                if(beginner.isChecked()) {
+                    levelTypeIntent.putExtra("Type", "Legs");
+                    levelTypeIntent.putExtra("Level", "beginner");
+                } else {
+                    levelTypeIntent.putExtra("Type", "Legs");
+                }
                 startActivity(levelTypeIntent);
             }
         });
@@ -147,7 +159,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                levelTypeIntent.putExtra("Type", "Arms");
+                if(beginner.isChecked()) {
+                    levelTypeIntent.putExtra("Type", "Arms");
+                    levelTypeIntent.putExtra("Level", "beginner");
+                } else {
+                    levelTypeIntent.putExtra("Type", "Arms");
+                }
                 startActivity(levelTypeIntent);
             }
         });
@@ -157,7 +174,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                levelTypeIntent.putExtra("Type", "Back");
+                if(beginner.isChecked()) {
+                    levelTypeIntent.putExtra("Type", "Back");
+                    levelTypeIntent.putExtra("Level", "beginner");
+                } else {
+                    levelTypeIntent.putExtra("Type", "Back");
+                }
                 startActivity(levelTypeIntent);
             }
         });
@@ -184,7 +206,12 @@ public class MainActivity extends AppCompatActivity {
                 // Default workout configuration with just level extra information
                /* levelTypeIntent.putExtra("Level", "beginner");
                 startActivity(levelTypeIntent);*/
-               levelTypeIntent.putExtra("Type", "null");
+               // to account for conditions where no explicit Level extra is available
+               if (beginner.isChecked()) {
+                   levelTypeIntent.putExtra("Level", "beginner");
+               }
+
+                levelTypeIntent.putExtra("Type", "null");
                 startActivity(levelTypeIntent);
 
                 // Test comment to check git branch issue

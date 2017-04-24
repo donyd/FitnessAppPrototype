@@ -94,9 +94,11 @@ public class WorkoutActivity extends AppCompatActivity {
          */
 
 
-        String passedInfo = getIntent().getStringExtra("Type");
+        String exerciseType = getIntent().getStringExtra("Type");
+        String exerciseLevel = getIntent().getStringExtra("Level");
 
-        Log.d("Intent Extra", passedInfo);
+        Log.d("Intent Type", exerciseType);
+        Log.d("Intent Level", exerciseLevel);
 
 
 
