@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
+
+import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
+import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
 
 import com.unscripted.www.fitnessappprototype.sqlite.DatabaseHelper;
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = helper.getReadableDatabase();*/
 
       // Only to be called when intially populating exercises table
-      // CreateExercises();
+       //CreateExercises();
 
         // Initialize intent
         levelTypeIntent = new Intent(MainActivity.this, WorkoutActivity.class);
@@ -211,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                    levelTypeIntent.putExtra("Level", "beginner");
                }
 
-                levelTypeIntent.putExtra("Type", "null");
+               // levelTypeIntent.putExtra("Type", "null");
                 startActivity(levelTypeIntent);
 
                 // Test comment to check git branch issue
@@ -264,7 +267,18 @@ public class MainActivity extends AppCompatActivity {
                 ",(\"Abs\", \"Weighted Leg Drop\", \"Lie on a flat surface with dumbell in hand. Raise both feet and arms perpendicular to the floor. Lower gently. to resting position and return to start.\", \"https://www.youtube.com/watch?v=klFCxOfL3w0\")" +
                 ",(\"Shoulders\", \"Lateral Raise\", \"Stand straight with feet shoulder width apart. Hold arms with elbows slightly bent. Raise arms towards the sides until slightly above shoulder level. Hold and return to start position.\", \"https://www.youtube.com/watch?v=c3FkUjXxWmM\");";
 
+
+
+        String levelQuery = "INSERT INTO levels ("
+                + LevelEntry.COLUMN_LEVEL + ","
+                + LevelEntry.COLUMN_REPS + ")"
+                + " VALUES (\"beginner\", \"8\")"
+                + ",(\"novice\", \"14\")"
+                + ",(\"advanced\", \"22\");";
+
+
         db.execSQL(query);
+        db.execSQL(levelQuery);
 
 
 
