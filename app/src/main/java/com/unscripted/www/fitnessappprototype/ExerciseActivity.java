@@ -9,6 +9,10 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+/**
+ * References: https://www.sitepoint.com/using-the-youtube-api-to-embed-video-in-an-android-app/ **Karina
+ */
+
 public class ExerciseActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
         private static final int RECOVERY_REQUEST = 1;

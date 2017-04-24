@@ -72,6 +72,7 @@ public class WorkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        setTitle("             WORKOUT");
         //this line creates back button to go BACKWARDS
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

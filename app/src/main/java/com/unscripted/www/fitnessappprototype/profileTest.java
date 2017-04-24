@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
+/*
+  * Reference @http://stackoverflow.com/questions/2416844/how-to-set-custom-title-bar-textview-value-dynamically-in-android **Karina
+  */
 public class profileTest extends AppCompatActivity {
 
     //Declare Home, Workout and Profile Buttons
@@ -26,6 +29,9 @@ public class profileTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_test);
+
+        //this line sets customized title in Action Bar
+        setTitle("              PROFILE");
 
         //this line creates back button to go BACKWARDS
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
