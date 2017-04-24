@@ -1,8 +1,7 @@
 package com.unscripted.www.fitnessappprototype;
 
 /**
- * Created by Kari on 23/04/2017.
- * References: https://www.sitepoint.com/using-the-youtube-api-to-embed-video-in-an-android-app/
+ * References: https://www.sitepoint.com/using-the-youtube-api-to-embed-video-in-an-android-app/  **Karina
  */
 
 public final class Config {

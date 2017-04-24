@@ -33,8 +33,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //this line sets customized title in Action Bar
+        setTitle("                          HOME");
+
+
         /* Initialize database
-        @ reference https://app.pluralsight.com/library/courses/android-database-application-sqlite-building-your-first/
+        @ reference https://app.pluralsight.com/library/courses/android-database-application-sqlite-building-your-first/  **Donal
         */
         /*DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();*/
@@ -57,9 +61,10 @@ public class MainActivity extends AppCompatActivity {
         profileBtn= (Button) findViewById(R.id.button3);
 
         /*
-         @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 putExtra
+         @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 putExtra  **Donal
          */
 
+        //This tells Toggle buttons how to behave when user clicks on each of them
         beginner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
