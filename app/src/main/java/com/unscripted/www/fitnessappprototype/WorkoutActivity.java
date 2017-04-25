@@ -16,10 +16,14 @@ import android.widget.ListView;
 import com.unscripted.www.fitnessappprototype.sqlite.DatabaseHelper;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
+import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
 
 import static android.app.PendingIntent.getActivity;
 
 public class WorkoutActivity extends AppCompatActivity {
+
+
+
 
 
 
@@ -29,17 +33,24 @@ public class WorkoutActivity extends AppCompatActivity {
     /*
   @ reference https://app.pluralsight.com/player?course=android-database-application-sqlite-building-your-first&author=simone-alessandria&name=android-database-application-sqlite-building-your-first-m3&clip=6&mode=live
    */
-    private void readData(){
+    private void readData(String query){
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-        String[] projection = {ExerciseEntry.COLUMN_TYPE,
-                ExerciseEntry.COLUMN_NAME,
-                ExerciseEntry.COLUMN_URL};
+//        String[] projection = {
+//                ExerciseEntry.COLUMN_TYPE,
+//                ExerciseEntry.COLUMN_NAME,
+//                ExerciseEntry.COLUMN_URL,
+//        };
+//
+//        String selection = ExerciseEntry.COLUMN_TYPE + " = ? ";
+//        String[] selectionArgs = {"Abs"};
+//        Cursor c = db.query(ExerciseEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
 
-        String selection = ExerciseEntry.COLUMN_TYPE + " = ? ";
-        String[] selectionArgs = {"Abs"};
 
-        Cursor c = db.query(ExerciseEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+        Log.e("exerciseQuery", query);
+
+        Cursor c = db.rawQuery(query, null);
+
 
         // verifying query return
         int i = c.getCount();
@@ -77,6 +88,36 @@ public class WorkoutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+
+        /*
+         @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 getExtra
+         */
+
+        String selectExercises;
+        String exerciseType = getIntent().getStringExtra("Type");
+        String exerciseLevel = getIntent().getStringExtra("Level");
+
+        //Log.d("Intent Type", exerciseType);
+        Log.d("Intent Level", exerciseLevel);
+
+        /*
+        @ http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/
+         */
+        if(exerciseType == null) {
+            selectExercises = "SELECT " + "ex." + ExerciseEntry.COLUMN_NAME + ", ex." + ExerciseEntry.COLUMN_URL + ", lvl."
+                    + LevelEntry.COLUMN_REPS + " FROM " + ExerciseEntry.TABLE_NAME + " AS ex, " + LevelEntry.TABLE_NAME + " AS lvl"
+                    + " WHERE " + LevelEntry.COLUMN_LEVEL + " = " + "\"" + exerciseLevel + "\"";
+        } else
+        {
+            selectExercises = "SELECT " + "ex." + ExerciseEntry.COLUMN_NAME + ", ex." + ExerciseEntry.COLUMN_URL + ", lvl."
+                    + LevelEntry.COLUMN_REPS + " FROM " + ExerciseEntry.TABLE_NAME + " AS ex, " + LevelEntry.TABLE_NAME + " AS lvl"
+                    + " WHERE " + LevelEntry.COLUMN_LEVEL + " = " + "\"" + exerciseLevel + "\""
+            + " AND " + ExerciseEntry.COLUMN_TYPE + " = " + "\"" + exerciseType + "\"";
+        }
+
+        readData(selectExercises);
+
+
         /** START OF ListView setup and details
          * List view to present a receptacle for exercises
          * which will be displayed based on yet to be finalised logic
@@ -85,32 +126,16 @@ public class WorkoutActivity extends AppCompatActivity {
          *
          *  @ reference https://developer.android.com/guide/topics/ui/declaring-layout.html#AdapterViews         *
          */
-
-
-        readData();
-
-        /*
-         @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 getExtra
-         */
-
-
-        String passedInfo = getIntent().getStringExtra("Type");
-
-        Log.d("Intent Extra", passedInfo);
-
-
-
         mListView = (ListView) findViewById(R.id.workout_container);
 
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, arrWorkout);
 
         mListView.setAdapter(mAdapter);
-
         // END OF ListView setup and details
 
-        // Get references to ListView items
 
+        // Get references to ListView items
        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
            @Override

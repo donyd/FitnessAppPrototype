@@ -11,14 +11,14 @@
 
     <ListView
         android:layout_width="160dp"
-        android:layout_height="120dp"
+        android:layout_height="190dp"
         android:background="@drawable/border"
         android:weightSum="1"
         android:id="@+id/workout_container"
         android:orientation="vertical"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/button4"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp">
+        android:layout_marginBottom="11dp">
 
     </ListView>
 
@@ -49,23 +49,20 @@
 
     <Button
         android:layout_width="160sp"
-        android:layout_height="60sp"
+        android:layout_height="40sp"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         android:text="START"
         android:id="@+id/button4"
-        android:layout_marginBottom="14dp"
+        android:background="@color/btnLightYellow"
         android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:background="@color/btnLightYellow"/>
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:id="@+id/imageButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/fitn"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
