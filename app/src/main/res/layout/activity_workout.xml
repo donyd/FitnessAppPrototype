@@ -16,9 +16,9 @@
         android:weightSum="1"
         android:id="@+id/workout_container"
         android:orientation="vertical"
+        android:layout_marginBottom="21dp"
         android:layout_above="@+id/button4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp">
+        android:layout_centerHorizontal="true">
 
     </ListView>
 
@@ -56,7 +56,8 @@
         android:id="@+id/button4"
         android:background="@color/btnLightYellow"
         android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
 
     <ImageButton
         android:id="@+id/imageButton6"

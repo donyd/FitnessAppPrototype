@@ -30,7 +30,7 @@ public class ExerciseActivity extends YouTubeBaseActivity implements YouTubePlay
         @Override
         public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
             if (!wasRestored) {
-                player.cueVideo("fhWaJi1Hsfo"); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
+                player.cueVideo("m9wfzMsVxwo"); // Plays https://www.youtube.com/watch?v=m9wfzMsVxwo
             }
         }
 
