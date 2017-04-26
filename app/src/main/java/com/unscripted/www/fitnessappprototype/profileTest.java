@@ -1,8 +1,7 @@
 package com.unscripted.www.fitnessappprototype;
 
-import android.app.Activity;
+
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -12,25 +11,22 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.widget.ImageView;
-
+import android.widget.Toast;
 import com.joooonho.SelectableRoundedImageView;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /*
   * Reference @http://stackoverflow.com/questions/2416844/how-to-set-custom-title-bar-textview-value-dynamically-in-android **Karina
-  * @http://viralpatel.net/blogs/pick-image-from-galary-android-app/
-  * @http://stackoverflow.com/questions/5309190/android-pick-images-from-gallery
+  * @http://viralpatel.net/blogs/pick-image-from-galary-android-app/ **Karina
+  * @http://stackoverflow.com/questions/5309190/android-pick-images-from-gallery **Karina
+  * @http://androidarena.co.in/how-to-pick-image-from-gallery-example/ **Karina
   */
 public class profileTest extends AppCompatActivity {
 
-    //Declare Home, Workout and Profile Buttons
+    //Declare Home, Workout and Profile Buttons & RESULT_LOAD_IMAGE constant
     Button homeBtn;
     Button workoutBtn;
     Button profileBtn;
-    private static int RESULT_LOAD_IMAGE = 1;
+    private static final int RESULT_LOAD_IMAGE = 1;
 
     // Creates a back button to go BACKWARDS
     @Override
@@ -54,10 +50,8 @@ public class profileTest extends AppCompatActivity {
         homeBtn= (Button) findViewById(R.id.button1);
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);
-        //profilePicBtn = (Button) findViewById(R.id.profilePic);
 
-            // MENU BUTTONS
-
+            // *****MENU BUTTONS******
             // PROFILE button is selected when entering page
             profileBtn.setPressed(true);
             profileBtn.setOnTouchListener(new View.OnTouchListener() {
@@ -115,7 +109,6 @@ public class profileTest extends AppCompatActivity {
             //Pressing this button lets user select a picture from gallery to insert in their profile
             Button btnLoadImage = (Button) findViewById(R.id.buttonLoadPicture);
             btnLoadImage.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
                     // TODO:
@@ -129,51 +122,46 @@ public class profileTest extends AppCompatActivity {
                             RESULT_LOAD_IMAGE
                     );
                 }
-                /**
-                public void onClick(View arg0) {
-
-                    Intent i = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                    startActivityForResult(i, RESULT_LOAD_IMAGE);
-                }
-
-                 **/
-
             });
-
-
-
     }
+
     //This code grabs the image chosen by the user and shows it in the screen
     //>>>>STILL NOT WORKING AS DESIRED
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        try {
+            // When an Image is picked
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK
+                    && null != data) {
+                // Get the Image from data
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
+                // Get the cursor
+                Cursor cursor = getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
 
-        // /Detects request codes
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String img_Decodable_Str = cursor.getString(columnIndex);
+                cursor.close();
+                SelectableRoundedImageView imgView = (SelectableRoundedImageView) findViewById(R.id.imgView);
+                // Set the Image in ImageView after decoding the String
+                imgView.setImageBitmap(BitmapFactory
+                        .decodeFile(img_Decodable_Str));
 
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            SelectableRoundedImageView imageView = (SelectableRoundedImageView) findViewById(R.id.imgView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
+            } else {
+                Toast.makeText(this, "Hey pick your image first",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Something went embrassing", Toast.LENGTH_LONG)
+                    .show();
         }
 
-
     }
-
 
 /** >>>>>>THIS IS AN ALTERNATIVE CODE TO THE ONE ABOVE THAT IS ALSO NOT WORKING AS DESIRED YET
     @Override

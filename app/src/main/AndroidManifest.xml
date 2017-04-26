@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- References @ http://stackoverflow.com/questions/38372234/android-studio-how-to-change-app-nametoolbar-for-each-activity **Karina-->
-
+<?xml version="1.0" encoding="utf-8"?><!-- References @ http://stackoverflow.com/questions/38372234/android-studio-how-to-change-app-nametoolbar-for-each-activity **Karina -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unscripted.www.fitnessappprototype">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -25,14 +25,14 @@
         <activity
             android:name=".WorkoutActivity"
             android:label="WORKOUT"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ExerciseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".profileTest"
             android:label="PROFILE"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
