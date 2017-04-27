@@ -93,6 +93,9 @@ public class WorkoutActivity extends AppCompatActivity {
          @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 getExtra
          */
 
+        // Adding comment to allow commit
+
+
         String selectExercises;
         String exerciseType = getIntent().getStringExtra("Type");
         String exerciseLevel = getIntent().getStringExtra("Level");
