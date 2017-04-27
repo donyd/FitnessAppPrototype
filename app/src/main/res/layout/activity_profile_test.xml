@@ -26,10 +26,10 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                android:src="@drawable/photo"
                 app:sriv_border_color="#e3d90e"
                 app:sriv_border_width="2dp"
-                app:sriv_oval="true" />
+                app:sriv_oval="true"
+                android:src="@drawable/photo"/>
 
             <Button
                 android:id="@+id/buttonLoadPicture"
@@ -88,6 +88,8 @@
                 android:layout_marginRight="20dp"
                 android:text="Workout History"
                 />
+
+
         </LinearLayout>
     </ScrollView>
 
