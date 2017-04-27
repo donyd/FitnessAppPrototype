@@ -18,6 +18,9 @@ import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static android.app.PendingIntent.getActivity;
 
 public class WorkoutActivity extends AppCompatActivity {
@@ -27,13 +30,14 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
 
-    private String[] arrWorkout = {"Bicep Curl", "Lunges", "Crunches", "Chest Press"};
+    ArrayList<String> arrLst = new ArrayList();
+
     ListView mListView;
 
     /*
   @ reference https://app.pluralsight.com/player?course=android-database-application-sqlite-building-your-first&author=simone-alessandria&name=android-database-application-sqlite-building-your-first-m3&clip=6&mode=live
    */
-    private void readData(String query){
+    private ArrayList<String> readData(String query){
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 //        String[] projection = {
@@ -56,15 +60,26 @@ public class WorkoutActivity extends AppCompatActivity {
         int i = c.getCount();
         Log.d("Record Count", String.valueOf(i));
 
-        String rowContent = "";
+
+//        String rowContent = "";
+//        while(c.moveToNext()){
+//            for(i = 0; i<=2; i++){
+//                rowContent += c.getString(i) + " - ";
+//            }
+//            Log.i("Row " + String.valueOf(c.getPosition()), rowContent);
+//            rowContent = "";
+//        }
+
         while(c.moveToNext()){
-            for(i = 0; i<=2; i++){
-                rowContent += c.getString(i) + " - ";
-            }
-            Log.i("Row " + String.valueOf(c.getPosition()), rowContent);
-            rowContent = "";
+            arrLst.add(c.getString(0));
+//                    Log.d("arrWrk", arrLst);
         }
+
+
         c.close();
+        return arrLst;
+
+
     }
 
 
@@ -93,9 +108,6 @@ public class WorkoutActivity extends AppCompatActivity {
          @ reference https://www.youtube.com/watch?v=mPGCLKRCG-8 getExtra
          */
 
-        // Adding comment to allow commit
-
-
         String selectExercises;
         String exerciseType = getIntent().getStringExtra("Type");
         String exerciseLevel = getIntent().getStringExtra("Level");
@@ -109,16 +121,18 @@ public class WorkoutActivity extends AppCompatActivity {
         if(exerciseType == null) {
             selectExercises = "SELECT " + "ex." + ExerciseEntry.COLUMN_NAME + ", ex." + ExerciseEntry.COLUMN_URL + ", lvl."
                     + LevelEntry.COLUMN_REPS + " FROM " + ExerciseEntry.TABLE_NAME + " AS ex, " + LevelEntry.TABLE_NAME + " AS lvl"
-                    + " WHERE " + LevelEntry.COLUMN_LEVEL + " = " + "\"" + exerciseLevel + "\"";
+                    + " WHERE " + LevelEntry.COLUMN_LEVEL + " = " + "\"" + exerciseLevel + "\""
+                    + " ORDER BY RANDOM() LIMIT 0, 4";
         } else
         {
             selectExercises = "SELECT " + "ex." + ExerciseEntry.COLUMN_NAME + ", ex." + ExerciseEntry.COLUMN_URL + ", lvl."
                     + LevelEntry.COLUMN_REPS + " FROM " + ExerciseEntry.TABLE_NAME + " AS ex, " + LevelEntry.TABLE_NAME + " AS lvl"
                     + " WHERE " + LevelEntry.COLUMN_LEVEL + " = " + "\"" + exerciseLevel + "\""
-            + " AND " + ExerciseEntry.COLUMN_TYPE + " = " + "\"" + exerciseType + "\"";
+                    + " AND " + ExerciseEntry.COLUMN_TYPE + " = " + "\"" + exerciseType + "\""
+                    + " ORDER BY RANDOM() LIMIT 0, 4";
         }
 
-        readData(selectExercises);
+
 
 
         /** START OF ListView setup and details
@@ -131,23 +145,27 @@ public class WorkoutActivity extends AppCompatActivity {
          */
         mListView = (ListView) findViewById(R.id.workout_container);
 
+
+
+        arrLst = readData(selectExercises);
+
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, arrWorkout);
+                android.R.layout.simple_list_item_1, arrLst);
 
         mListView.setAdapter(mAdapter);
         // END OF ListView setup and details
 
 
         // Get references to ListView items
-       mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
-           @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
-               startActivity(intent);
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
+                startActivity(intent);
 
-           }
-       });
+            }
+        });
 
 
     /*   mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -158,10 +176,8 @@ public class WorkoutActivity extends AppCompatActivity {
                 builder.setMessage(listName).setTitle("Exercise one");
                 AlertDialog dialog = builder.create();
                 dialog.show(); *//* // Dialog created to test out ListView item click event.
-
                 Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
                 startActivity(intent);
-
                 return true;
             }
         });*/
@@ -213,7 +229,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
                 // Create an intent stating which Activity you would like to
                 // start
-               Intent intent = new Intent(WorkoutActivity.this, profileTest.class);
+                Intent intent = new Intent(WorkoutActivity.this, profileTest.class);
 
                 // Launch the Activity using the intent
                 startActivity(intent);
@@ -226,5 +242,3 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
 }
-
-
