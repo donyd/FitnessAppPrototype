@@ -8,17 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.unscripted.www.fitnessappprototype.sqlite.DatabaseHelper;
-import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,9 +28,12 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
 
-    public ArrayList<String> arrLst = new ArrayList();
-    public String[] urls = new String[4];
+    public ArrayList<String> ExerciseLst = new ArrayList();
+    String[] ExerciseArr = new String[4];
+    public String[] UrlArr = new String[4];
+    public String[] LevelArr = new String[4];
     public ArrayList<String> urlLst = new ArrayList();
+    public ArrayList<String> levelLst = new ArrayList();
 
     Cursor exerciseSet;
 
@@ -79,26 +79,27 @@ public class WorkoutActivity extends AppCompatActivity {
 //        }
 
         while(exerciseSet.moveToNext()){
-            arrLst.add(exerciseSet.getString(0));
+            ExerciseLst.add(exerciseSet.getString(0));
             urlLst.add(exerciseSet.getString(1));
+            levelLst.add(exerciseSet.getString(2));
                      // Log.d("Urls", );
         }
 
         exerciseSet.close();
-        return arrLst;
+        return ExerciseLst;
 
 
     }
 
 //    private String[] getUrl(Cursor cursor) {
-//        String[] urls = new String[1];
+//        String[] UrlArr = new String[1];
 //        for(int i = 0; i < 4; i++) {
 //            while (cursor.moveToNext()) {
-//                urls[i] = cursor.getString(1);
+//                UrlArr[i] = cursor.getString(1);
 //
 //            }
 //        }
-//        return urls;
+//        return UrlArr;
 //    }
 
 
@@ -106,6 +107,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
     //Declare activity_workout button
     Button workoutBtn;
+    Button startBtn;
 
     // Creates a back button to go BACKWARDS
     @Override
@@ -168,29 +170,36 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
 
-        arrLst = readData(selectExercises);
+        ExerciseLst = readData(selectExercises);
 
         /* @reference http://stackoverflow.com/questions/5374311/convert-arrayliststring-to-string-array */
-        urls = urlLst.toArray(urls);
-        Log.d("Urls", Arrays.toString(urls));
+        UrlArr = urlLst.toArray(UrlArr);
+        Log.d("Urls", Arrays.toString(UrlArr));
+        LevelArr = levelLst.toArray(LevelArr);
+        Log.d("Levels", Arrays.toString(LevelArr));
+
+
+        ExerciseArr = ExerciseLst.toArray(ExerciseArr);
+        Log.d("exercise", Arrays.toString(ExerciseArr));
 
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, arrLst);
+                android.R.layout.simple_list_item_1, ExerciseLst);
 
         mListView.setAdapter(mAdapter);
         // END OF ListView setup and details
 
 
-        // Get references to ListView items
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
-                startActivity(intent);
-
-            }
-        });
+        // Get references to ListView items and set onclick listeners for early prototype
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
 
     /*   mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -206,6 +215,23 @@ public class WorkoutActivity extends AppCompatActivity {
                 return true;
             }
         });*/
+
+
+
+        startBtn = (Button) findViewById(R.id.btnStart);
+        startBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent exerciseDetails = new Intent(WorkoutActivity.this, ExerciseActivity.class);
+                exerciseDetails.putExtra("exerciseName", ExerciseArr);
+                exerciseDetails.putExtra("exerciseLevel", LevelArr);
+                exerciseDetails.putExtra("exerciseUrl", UrlArr);
+
+                startActivity(exerciseDetails);
+            }
+        });
+
 
         // Initialize activity_workout
         workoutBtn = (Button) findViewById(R.id.button2);
