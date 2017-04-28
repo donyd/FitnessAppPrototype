@@ -16,9 +16,9 @@
         android:weightSum="1"
         android:id="@+id/workout_container"
         android:orientation="vertical"
-        android:layout_above="@+id/button4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp">
+        android:layout_marginBottom="21dp"
+        android:layout_above="@+id/btnStart"
+        android:layout_centerHorizontal="true">
 
     </ListView>
 
@@ -53,16 +53,18 @@
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         android:text="START"
-        android:id="@+id/button4"
+        android:id="@+id/btnStart"
         android:background="@color/btnLightYellow"
         android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
 
     <ImageButton
         android:id="@+id/imageButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/fitn"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/workout_container" />
 
 </RelativeLayout>

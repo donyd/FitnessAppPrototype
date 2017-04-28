@@ -18,6 +18,7 @@ import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEn
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
 
 import com.unscripted.www.fitnessappprototype.sqlite.DatabaseHelper;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
     // Declare ToggleButtons instances

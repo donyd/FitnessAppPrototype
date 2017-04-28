@@ -1,8 +1,10 @@
 package com.unscripted.www.fitnessappprototype;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -13,24 +15,30 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.ImageView;
-
+import android.widget.Toast;
 import com.joooonho.SelectableRoundedImageView;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
 
 /*
   * Reference @http://stackoverflow.com/questions/2416844/how-to-set-custom-title-bar-textview-value-dynamically-in-android **Karina
-  * @http://viralpatel.net/blogs/pick-image-from-galary-android-app/
-  * @http://stackoverflow.com/questions/5309190/android-pick-images-from-gallery
+  * @http://viralpatel.net/blogs/pick-image-from-galary-android-app/ **Karina
+  * @http://stackoverflow.com/questions/5309190/android-pick-images-from-gallery **Karina
+  * @https://github.com/jaisonfdo/ImageAttachment **Karina
+  * @http://droidmentor.com/pick-image-from-gallery-or-camera/  **Karina
   */
-public class profileTest extends AppCompatActivity {
+public class profileTest extends AppCompatActivity implements Imageutils.ImageAttachmentListener{
 
-    //Declare Home, Workout and Profile Buttons
+    ImageView iv_attachment;
+    //For Image Attachment
+    private Bitmap bitmap;
+    private String file_name;
+    Imageutils imageutils;
+
+    //Declare Home, Workout and Profile Buttons & RESULT_LOAD_IMAGE constant
     Button homeBtn;
     Button workoutBtn;
     Button profileBtn;
-    private static int RESULT_LOAD_IMAGE = 1;
 
     // Creates a back button to go BACKWARDS
     @Override
@@ -54,10 +62,8 @@ public class profileTest extends AppCompatActivity {
         homeBtn= (Button) findViewById(R.id.button1);
         workoutBtn= (Button) findViewById(R.id.button2);
         profileBtn= (Button) findViewById(R.id.button3);
-        //profilePicBtn = (Button) findViewById(R.id.profilePic);
 
-            // MENU BUTTONS
-
+            // *****MENU BUTTONS******
             // PROFILE button is selected when entering page
             profileBtn.setPressed(true);
             profileBtn.setOnTouchListener(new View.OnTouchListener() {
@@ -112,90 +118,39 @@ public class profileTest extends AppCompatActivity {
                 }
             });
 
-            //Pressing this button lets user select a picture from gallery to insert in their profile
-            Button btnLoadImage = (Button) findViewById(R.id.buttonLoadPicture);
-            btnLoadImage.setOnClickListener(new View.OnClickListener() {
+        //To upload Image
+        imageutils =new Imageutils(this);
 
-                @Override
-                public void onClick(View v) {
-                    // TODO:
-                    // Launch Activity Two
-                    //
-                    startActivityForResult(
-                            new Intent(
-                                    Intent.ACTION_PICK,
-                                    android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI
-                            ),
-                            RESULT_LOAD_IMAGE
-                    );
-                }
-                /**
-                public void onClick(View arg0) {
+        iv_attachment=(ImageView)findViewById(R.id.imgView);
 
-                    Intent i = new Intent(
-                            Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                    startActivityForResult(i, RESULT_LOAD_IMAGE);
-                }
-
-                 **/
-
-            });
-
-
-
-    }
-    //This code grabs the image chosen by the user and shows it in the screen
-    //>>>>STILL NOT WORKING AS DESIRED
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        // /Detects request codes
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            SelectableRoundedImageView imageView = (SelectableRoundedImageView) findViewById(R.id.imgView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
-        }
-
-
-    }
-
-
-/** >>>>>>THIS IS AN ALTERNATIVE CODE TO THE ONE ABOVE THAT IS ALSO NOT WORKING AS DESIRED YET
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //Detects request codes
-        if(requestCode==RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        iv_attachment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageutils.imagepicker(1);
             }
-        }
+        });
+    }
+
+    //This code grabs the image chosen by the user and shows it in the screen
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        imageutils.onActivityResult(requestCode, resultCode, data);
 
     }
-    **/
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            imageutils.request_permission_result(requestCode, permissions, grantResults);
+        }
 
+        public void image_attachment(int from, String filename, Bitmap file, Uri uri) {
+            this.bitmap=file;
+            this.file_name=filename;
+            iv_attachment.setImageBitmap(file);
+
+            String path =  Environment.getExternalStorageDirectory() + File.separator + "ImageAttach" + File.separator;
+            imageutils.createImage(file,filename,path,false);
+
+        }
 }
