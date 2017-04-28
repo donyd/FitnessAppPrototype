@@ -18,6 +18,7 @@ import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.ExerciseEntry;
 import com.unscripted.www.fitnessappprototype.sqlite.ExerciseContract.LevelEntry;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,7 +31,11 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
 
-    ArrayList<String> arrLst = new ArrayList();
+    public ArrayList<String> arrLst = new ArrayList();
+    public String[] urls = new String[4];
+    public ArrayList<String> urlLst = new ArrayList();
+
+    Cursor exerciseSet;
 
     ListView mListView;
 
@@ -53,11 +58,14 @@ public class WorkoutActivity extends AppCompatActivity {
 
         Log.e("exerciseQuery", query);
 
-        Cursor c = db.rawQuery(query, null);
+        Cursor exerciseSet = db.rawQuery(query, null);
+
+//        urlLst = getUrl(exerciseSet);
+//        Log.d("Urls", Arrays.toString(urlLst));
 
 
         // verifying query return
-        int i = c.getCount();
+        int i = exerciseSet.getCount();
         Log.d("Record Count", String.valueOf(i));
 
 
@@ -70,17 +78,29 @@ public class WorkoutActivity extends AppCompatActivity {
 //            rowContent = "";
 //        }
 
-                while(c.moveToNext()){
-                    arrLst.add(c.getString(0));
-//                    Log.d("arrWrk", arrLst);
-                }
+        while(exerciseSet.moveToNext()){
+            arrLst.add(exerciseSet.getString(0));
+            urlLst.add(exerciseSet.getString(1));
+                     // Log.d("Urls", );
+        }
 
-
-        c.close();
+        exerciseSet.close();
         return arrLst;
 
 
     }
+
+//    private String[] getUrl(Cursor cursor) {
+//        String[] urls = new String[1];
+//        for(int i = 0; i < 4; i++) {
+//            while (cursor.moveToNext()) {
+//                urls[i] = cursor.getString(1);
+//
+//            }
+//        }
+//        return urls;
+//    }
+
 
 
 
@@ -128,8 +148,9 @@ public class WorkoutActivity extends AppCompatActivity {
             selectExercises = "SELECT " + "ex." + ExerciseEntry.COLUMN_NAME + ", ex." + ExerciseEntry.COLUMN_URL + ", lvl."
                     + LevelEntry.COLUMN_REPS + " FROM " + ExerciseEntry.TABLE_NAME + " AS ex, " + LevelEntry.TABLE_NAME + " AS lvl"
                     + " WHERE " + LevelEntry.COLUMN_LEVEL + " = " + "\"" + exerciseLevel + "\""
-            + " AND " + ExerciseEntry.COLUMN_TYPE + " = " + "\"" + exerciseType + "\""
-            + " ORDER BY RANDOM() LIMIT 0, 4";
+                    + " AND " + ExerciseEntry.COLUMN_TYPE + " = " + "\"" + exerciseType + "\""
+                    + " ORDER BY RANDOM() LIMIT 0, 4";
+
         }
 
 
@@ -149,6 +170,10 @@ public class WorkoutActivity extends AppCompatActivity {
 
         arrLst = readData(selectExercises);
 
+        /* @reference http://stackoverflow.com/questions/5374311/convert-arrayliststring-to-string-array */
+        urls = urlLst.toArray(urls);
+        Log.d("Urls", Arrays.toString(urls));
+
         ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, arrLst);
 
@@ -157,15 +182,15 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
         // Get references to ListView items
-       mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
-           @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
-               startActivity(intent);
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
+                startActivity(intent);
 
-           }
-       });
+            }
+        });
 
 
     /*   mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -176,10 +201,8 @@ public class WorkoutActivity extends AppCompatActivity {
                 builder.setMessage(listName).setTitle("Exercise one");
                 AlertDialog dialog = builder.create();
                 dialog.show(); *//* // Dialog created to test out ListView item click event.
-
                 Intent intent = new Intent(WorkoutActivity.this, ExerciseActivity.class);
                 startActivity(intent);
-
                 return true;
             }
         });*/
@@ -231,7 +254,7 @@ public class WorkoutActivity extends AppCompatActivity {
 
                 // Create an intent stating which Activity you would like to
                 // start
-               Intent intent = new Intent(WorkoutActivity.this, profileTest.class);
+                Intent intent = new Intent(WorkoutActivity.this, profileTest.class);
 
                 // Launch the Activity using the intent
                 startActivity(intent);
@@ -244,5 +267,3 @@ public class WorkoutActivity extends AppCompatActivity {
 
 
 }
-
-
