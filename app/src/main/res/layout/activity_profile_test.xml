@@ -19,25 +19,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.joooonho.SelectableRoundedImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:id="@+id/imgView"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                app:sriv_border_color="#e3d90e"
-                app:sriv_border_width="2dp"
-                app:sriv_oval="true"
-                android:src="@drawable/photo"/>
-
-            <Button
-                android:id="@+id/buttonLoadPicture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Load Picture"
-                android:layout_gravity="center"></Button>
+                android:src="@drawable/photo"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -76,19 +64,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="120dp"
                 android:layout_marginRight="120dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="15dp"
                 android:text="OK"
                 />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Workout History"
-                />
-
 
         </LinearLayout>
     </ScrollView>
