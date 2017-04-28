@@ -21,7 +21,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         android:text="NEXT EXERCISE"
-        android:id="@+id/button4"
+        android:id="@+id/btnNext"
         android:background="@color/btnLightYellow"
         android:layout_marginBottom="58dp"
         android:layout_above="@+id/adView"
@@ -36,6 +36,24 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id">
     </com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/txtVwReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reps"
+        android:textSize="24sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtVwRepCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="72sp"
+        android:layout_alignTop="@+id/txtVwReps"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp" />
 
 
 </RelativeLayout>

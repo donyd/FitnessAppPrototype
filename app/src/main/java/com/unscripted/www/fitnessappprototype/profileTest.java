@@ -132,10 +132,7 @@ public class profileTest extends AppCompatActivity implements Imageutils.ImageAt
                     // start
                     // Intent intent = new Intent(this, ActivityTwo.class);
                     //Intent intent = new Intent(android.content.Intent, ActivityTwo);
-                    Intent intent = new Intent(profileTest.this, WorkoutActivity.class);
-
-                    // Launch the Activity using the intent
-                    startActivity(intent);
+                                       
 
                 }
             });

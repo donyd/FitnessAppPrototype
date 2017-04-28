@@ -23,13 +23,8 @@ import static android.app.PendingIntent.getActivity;
 
 public class WorkoutActivity extends AppCompatActivity {
 
-
-
-
-
-
     public ArrayList<String> ExerciseLst = new ArrayList();
-    String[] ExerciseArr = new String[4];
+    public String[] ExerciseArr = new String[4];
     public String[] UrlArr = new String[4];
     public String[] LevelArr = new String[4];
     public ArrayList<String> urlLst = new ArrayList();
