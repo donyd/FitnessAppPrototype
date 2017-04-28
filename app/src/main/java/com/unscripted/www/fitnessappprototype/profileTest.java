@@ -1,12 +1,15 @@
 package com.unscripted.www.fitnessappprototype;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +17,12 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.joooonho.SelectableRoundedImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 /*
@@ -26,16 +31,26 @@ import java.io.File;
   * @http://stackoverflow.com/questions/5309190/android-pick-images-from-gallery **Karina
   * @https://github.com/jaisonfdo/ImageAttachment **Karina
   * @http://droidmentor.com/pick-image-from-gallery-or-camera/  **Karina
+  * @http://android-steps.blogspot.ie/2015/08/profile-page-with-first-time-login-check.html **Karina
   */
 public class profileTest extends AppCompatActivity implements Imageutils.ImageAttachmentListener{
 
-    ImageView iv_attachment;
     //For Image Attachment
+    ImageView iv_attachment;
     private Bitmap bitmap;
     private String file_name;
     Imageutils imageutils;
 
-    //Declare Home, Workout and Profile Buttons & RESULT_LOAD_IMAGE constant
+    //TO SAVE THE TEXT ENTERED BY USER
+    EditText ed1,ed2,ed3;
+    Button b1;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Name = "nameKey";
+    public static final String Dob = "DobKey";
+    public static final String Email = "emailKey";
+    SharedPreferences sharedpreferences;
+
+    //Declare Home, Workout and Profile Buttons
     Button homeBtn;
     Button workoutBtn;
     Button profileBtn;
@@ -51,6 +66,34 @@ public class profileTest extends AppCompatActivity implements Imageutils.ImageAt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_test);
+
+        //TO SAVE TEXT ENTERED BY USER
+        //NOT WORKING AS DESIRED
+        ed1=(EditText)findViewById(R.id.editText);
+        ed2=(EditText)findViewById(R.id.editText2);
+        ed3=(EditText)findViewById(R.id.editText3);
+
+        b1=(Button)findViewById(R.id.buttonOK);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n  = ed1.getText().toString();
+                String ph  = ed2.getText().toString();
+                String e  = ed3.getText().toString();
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                editor.putString(Name, n);
+                editor.putString(Dob, ph);
+                editor.putString(Email, e);
+                editor.commit();
+                Toast.makeText(profileTest.this,"Thanks",Toast.LENGTH_LONG).show();
+
+            }
+
+        });
 
         //this line sets customized title in Action Bar
         setTitle("              PROFILE");

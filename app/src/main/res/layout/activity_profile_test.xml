@@ -37,6 +37,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/editText"
                 android:inputType="text"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -45,6 +46,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/editText2"
                 android:inputType="date"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -53,6 +55,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/editText3"
                 android:inputType="textEmailAddress"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -61,12 +64,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/buttonOK"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="120dp"
                 android:layout_marginRight="120dp"
                 android:layout_marginBottom="15dp"
-                android:text="OK"
-                />
+                android:text="OK" />
 
         </LinearLayout>
     </ScrollView>
